@@ -4,7 +4,7 @@
 
 int main() {
     int escolhaPais, escolhaCategorias;  
-    int valorBrasil = 0, valorEUA = 0;  
+    float valorBrasil, valorEUA;  
 
     printf("### Bem-vindo ao jogo Super Trunfo: Brasil vs Estados Unidos! ###\n");
     printf("Escolha o país que você quer jogar:\n");
@@ -19,23 +19,30 @@ int main() {
     printf("2 - Área\n");
     printf("3 - Pontos turísticos\n");
     printf("4 - População\n");
-    printf("5 - Densidade demográfica\n");
+    printf("5 - Densidade populacional\n");
+    printf("6 - PIB per capita\n");
     printf("Digite o número da categoria desejada: ");
     scanf("%d", &escolhaCategorias);
 
     // CARTA BRASIL
-    int pibBrasil = 1800;
-    int areaBrasil = 8516000;
+    float pibBrasil = 1800.0;               
+    float areaBrasil = 8516000.0;           
     int pontosTuristicosBrasil = 200;
-    int populacaoBrasil = 213000000;
-    int densidadeDemograficaBrasil = 25;
+    float populacaoBrasil = 213000000.0;    
+
+    
+    float densidadePopulacionalBrasil = populacaoBrasil / areaBrasil;
+    float pibPerCapitaBrasil = (pibBrasil * 1000000000) / populacaoBrasil; 
 
     // CARTA ESTADOS UNIDOS
-    int pibEUA = 21000;
-    int areaEUA = 9834000;
+    float pibEUA = 21000.0;                 
+    float areaEUA = 9834000.0;             
     int pontosTuristicosEUA = 400;
-    int populacaoEUA = 331000000;
-    int densidadeDemograficaEUA = 36;   
+    float populacaoEUA = 331000000.0;       
+
+    
+    float densidadePopulacionalEUA = populacaoEUA / areaEUA;
+    float pibPerCapitaEUA = (pibEUA * 1000000000) / populacaoEUA;
 
     
     switch (escolhaCategorias) {
@@ -60,9 +67,14 @@ int main() {
             valorEUA = populacaoEUA;
             break;
         case 5:
-            printf("\nVocê escolheu Densidade demográfica!\n");
-            valorBrasil = densidadeDemograficaBrasil;
-            valorEUA = densidadeDemograficaEUA;
+            printf("\nVocê escolheu Densidade populacional!\n");
+            valorBrasil = densidadePopulacionalBrasil;
+            valorEUA = densidadePopulacionalEUA;
+            break;
+        case 6:
+            printf("\nVocê escolheu PIB per capita!\n");
+            valorBrasil = pibPerCapitaBrasil;
+            valorEUA = pibPerCapitaEUA;
             break;
         default:
             printf("\nOpção inválida! Por favor, escolha uma categoria válida.\n");
@@ -70,8 +82,8 @@ int main() {
     }
 
     
-    printf("\nBrasil: %d\n", valorBrasil);
-    printf("EUA: %d\n", valorEUA);
+    printf("\nBrasil: %.2f\n", valorBrasil);
+    printf("EUA: %.2f\n", valorEUA);
 
     
     if (valorBrasil > valorEUA) {
