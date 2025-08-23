@@ -1,98 +1,121 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
-int main() {
-    int escolhaPais, escolhaCategorias;  
-    float valorBrasil, valorEUA;  
+int main (){
+// DADOS DAS CARTAS
 
-    printf("### Bem-vindo ao jogo Super Trunfo: Brasil vs Estados Unidos! ###\n");
-    printf("Escolha o país que você quer jogar:\n");
-    printf("1 - Brasil\n");
-    printf("2 - Estados Unidos\n");
-    printf("Digite o número do país desejado: ");
-    scanf("%d", &escolhaPais);
+char pais1[] = "Brasil";
+char pais2[] = "USA";
 
-    // Escolha de categorias
-    printf("\nEscolha uma categoria para comparar as cartas:\n");
+int pibBrasil = 1800, areaBrasil = 8516000, densidadeBrasil = 25;
+int pibEUA = 21000, areaEUA = 9834000, densidadeEUA = 35;
+
+int escolha1 = 0, escolha2 = 0;
+int pontuacaoBrasil = 0;
+int pontuacaoUSA = 0;
+
+// MENU PRIMEIRO ATRIBUTO
+
+    printf("\nEscolha o PRIMEIRO ATRIBUTO:\n");
     printf("1 - PIB\n");
     printf("2 - Área\n");
-    printf("3 - Pontos turísticos\n");
-    printf("4 - População\n");
-    printf("5 - Densidade populacional\n");
-    printf("6 - PIB per capita\n");
-    printf("Digite o número da categoria desejada: ");
-    scanf("%d", &escolhaCategorias);
+    printf("3 - Densidade Demográfica\n");
+    printf("Digite sua escolha: ");
+    scanf("%d", &escolha1);
 
-    // CARTA BRASIL
-    float pibBrasil = 1800.0;               
-    float areaBrasil = 8516000.0;           
-    int pontosTuristicosBrasil = 200;
-    float populacaoBrasil = 213000000.0;    
-
-    
-    float densidadePopulacionalBrasil = populacaoBrasil / areaBrasil;
-    float pibPerCapitaBrasil = (pibBrasil * 1000000000) / populacaoBrasil; 
-
-    // CARTA ESTADOS UNIDOS
-    float pibEUA = 21000.0;                 
-    float areaEUA = 9834000.0;             
-    int pontosTuristicosEUA = 400;
-    float populacaoEUA = 331000000.0;       
-
-    
-    float densidadePopulacionalEUA = populacaoEUA / areaEUA;
-    float pibPerCapitaEUA = (pibEUA * 1000000000) / populacaoEUA;
-
-    
-    switch (escolhaCategorias) {
-        case 1:
-            printf("\nVocê escolheu PIB!\n");
-            valorBrasil = pibBrasil;
-            valorEUA = pibEUA;
-            break;
-        case 2:
-            printf("\nVocê escolheu Área!\n");
-            valorBrasil = areaBrasil;
-            valorEUA = areaEUA;
-            break;
-        case 3:
-            printf("\nVocê escolheu Pontos turísticos!\n");
-            valorBrasil = pontosTuristicosBrasil;
-            valorEUA = pontosTuristicosEUA;
-            break;
-        case 4:
-            printf("\nVocê escolheu População!\n");
-            valorBrasil = populacaoBrasil;
-            valorEUA = populacaoEUA;
-            break;
-        case 5:
-            printf("\nVocê escolheu Densidade populacional!\n");
-            valorBrasil = densidadePopulacionalBrasil;
-            valorEUA = densidadePopulacionalEUA;
-            break;
-        case 6:
-            printf("\nVocê escolheu PIB per capita!\n");
-            valorBrasil = pibPerCapitaBrasil;
-            valorEUA = pibPerCapitaEUA;
-            break;
-        default:
-            printf("\nOpção inválida! Por favor, escolha uma categoria válida.\n");
-            return 0;
+    while (escolha1 < 1 || escolha1 > 3) {
+    printf("Escolha inválida! Digite novamente: ");
+    scanf("%d", &escolha1);
+ 
     }
+// MENU SEGUNDO ATRIBUTO
 
-    
-    printf("\nBrasil: %.2f\n", valorBrasil);
-    printf("EUA: %.2f\n", valorEUA);
+    printf("\nEscolha o SEGUNDO ATRIBUTO (DIFERENTE DO PRIMEIRO):\n");
+    if (escolha1 != 1) printf("1 - PIB\n");
+    if (escolha1 != 2) printf("2 - Área\n");
+    if (escolha1 != 3) printf("3 - Densidade Demográfica\n");
+    printf("Digite sua escolha: ");
+    scanf("%d", &escolha2);
 
-    
-    if (valorBrasil > valorEUA) {
-        printf("\nResultado: Brasil venceu!\n");
-    } else if (valorEUA > valorBrasil) {
-        printf("\nResultado: Estados Unidos venceu!\n");
-    } else {
-        printf("\nResultado: Empate!\n");
-    }
+    while (escolha2 < 1 || escolha2 > 3 || escolha2 == escolha1){
 
-    return 0;
+    printf("Escolha inválida! Digite novamente: ");
+    scanf("%d", &escolha2);
 }
+
+int valor1Carta1 = 0, valor1Carta2 = 0; // Primeiro atributo
+int valor2Carta1 = 0, valor2Carta2 = 0; // Segundo atributo
+// Primeiro atributo
+switch(escolha1) {
+    case 1: // PIB
+        valor1Carta1 = pibBrasil;
+        valor1Carta2 = pibEUA;
+        break;
+    case 2: // Área
+        valor1Carta1 = areaBrasil;
+        valor1Carta2 = areaEUA;
+        break;
+    case 3: // Densidade
+        valor1Carta1 = densidadeBrasil;
+        valor1Carta2 = densidadeEUA;
+        break;
+}
+// Segundo atributo
+switch(escolha2) {
+    case 1:
+        valor2Carta1 = pibBrasil;
+        valor2Carta2 = pibEUA;
+        break;
+    case 2:
+        valor2Carta1 = areaBrasil;
+        valor2Carta2 = areaEUA;
+        break;
+    case 3:
+        valor2Carta1 = densidadeBrasil;
+        valor2Carta2 = densidadeEUA;
+        break;
+}
+if (escolha1 == 3) {
+    // densidade: menor vence
+    if (valor1Carta1 < valor1Carta2)
+        pontuacaoBrasil++;
+    else if (valor1Carta1 > valor1Carta2)
+        pontuacaoUSA++;
+} else {
+    // PIB ou Área: maior vence
+    if (valor1Carta1 > valor1Carta2)
+        pontuacaoBrasil++;
+    else if (valor1Carta1 < valor1Carta2)
+        pontuacaoUSA++;
+}
+if (escolha2 == 3) {
+    // densidade: menor vence
+    if (valor2Carta1 < valor2Carta2)
+        pontuacaoBrasil++;
+    else if (valor2Carta1 > valor2Carta2)
+        pontuacaoUSA++;
+} else {
+    // PIB ou Área: maior vence
+    if (valor2Carta1 > valor2Carta2)
+        pontuacaoBrasil++;
+    else if (valor2Carta1 < valor2Carta2)
+        pontuacaoUSA++;
+}
+int somaBrasil = valor1Carta1 + valor2Carta1;
+int somaEUA = valor1Carta2 + valor2Carta2;
+// RESULTADO DA RODADA
+printf("\n=== RESULTADO DA RODADA ===\n");
+printf("%s: %d + %d = %d\n", pais1, valor1Carta1, valor2Carta1, somaBrasil);
+printf("%s: %d + %d = %d\n", pais2, valor1Carta2, valor2Carta2, somaEUA);
+
+if (somaBrasil > somaEUA) {
+    printf("\nVencedor: %s\n", pais1);
+} else if (somaBrasil < somaEUA) {
+    printf("\nVencedor: %s\n", pais2);
+} else {
+    printf("\nEmpate!\n");
+}
+
+
+
+ }
